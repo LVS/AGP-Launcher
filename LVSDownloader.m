@@ -79,6 +79,7 @@
 	NSRange range;
 	NSString *name;
 	NSString *value;
+	NSString *param;
 	
 	RKEnumerator *matchEnumerator = [jnlp matchEnumeratorWithRegex:regex];
 	
@@ -87,7 +88,7 @@
 		name = [jnlp substringWithRange:range];
 		range = [matchEnumerator currentRangeForCapture:2];
 		value = [jnlp substringWithRange:range];
-		NSString *param = [NSString stringWithFormat:@"-D%@=%@ ", name, value];
+		param = [NSString stringWithFormat:@"-D%@=%@", name, value];
 		[cmd_args addObject:param];
 	}
 	if ([language caseInsensitiveCompare:@"1"] == NSOrderedSame) {
@@ -96,7 +97,7 @@
 	else if ([language caseInsensitiveCompare:@"2"] == NSOrderedSame) {
 		value = @"fr_FR";
 	}
-	NSString *param = [NSString stringWithFormat:@"-D%@=%@ ", @"locale", value];
+	param = [NSString stringWithFormat:@"-D%@=%@", @"locale", value];
 	[cmd_args addObject:param];
 }
 
