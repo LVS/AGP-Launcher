@@ -33,12 +33,23 @@
 -(void)addServer:(NSString *)server
 {
 	NSString *obj = nil;
-	for(NSString *s in serverList) {
+	char *cs;
+
+	serverList = [NSMutableArray arrayWithContentsOfFile:[self serverListFilename]];
+	if (!serverList) {
+		serverList = [[NSMutableArray alloc] init];
+	}
+	unsigned count = [serverList count];
+	while (count--) {
+		cs = (char *)[serverList objectAtIndex:count];
+		NSString *s = [NSString stringWithCString:cs encoding:NSUTF8StringEncoding];
 		if ([s caseInsensitiveCompare:server] == NSOrderedSame) {
 			obj = s;
 		}
 	}
-	[serverList removeObject:obj];
+	if (obj) {
+		[serverList removeObject:obj];
+	}
 	[serverList insertObject:server atIndex:0];
 	[self saveServerList];
 }
@@ -62,7 +73,9 @@
 	}
 	else {
 		[serverComboBox addItemsWithObjectValues:serverList];
-		[serverComboBox selectItemAtIndex:0]; 
+		if ([serverComboBox numberOfItems] > 0) {
+			[serverComboBox selectItemAtIndex:0]; 
+		}
 	}
 }
 
