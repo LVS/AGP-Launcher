@@ -398,7 +398,7 @@
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSComboBoxCell" key="NSCell" id="897197879">
 								<int key="NSCellFlags">343014976</int>
-								<int key="NSCellFlags2">272630784</int>
+								<int key="NSCellFlags2">268436480</int>
 								<string key="NSContents"/>
 								<reference key="NSSupport" ref="465536494"/>
 								<reference key="NSControlView" ref="13313216"/>
@@ -765,6 +765,14 @@
 						<reference key="destination" ref="262619969"/>
 					</object>
 					<int key="connectionID">570</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">clickLaunch:</string>
+						<reference key="source" ref="883574542"/>
+						<reference key="destination" ref="13313216"/>
+					</object>
+					<int key="connectionID">571</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1368,7 +1376,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">570</int>
+			<int key="maxID">571</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
