@@ -138,7 +138,7 @@
 {
 	NSString *fullPath = [[self cacheFolder:server] stringByAppendingPathComponent:@"swt_cocoa64_x86-3.6M3.jar"];
     BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:fullPath];
-	fileExists = NO;
+	
 	if (!fileExists) {
 		NSString *jarPath = [[NSBundle mainBundle] pathForResource:@"swt_cocoa64_x86-3.6M3" 
 													   ofType:@"jar"];
