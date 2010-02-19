@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rm -rf appcast/ build/Release/ && rake dmg && open 'appcast/build/'
