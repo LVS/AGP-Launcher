@@ -14,6 +14,7 @@
 	IBOutlet NSComboBox *serverComboBox;
 	IBOutlet NSPopUpButton *languagePopUpButton;
 	IBOutlet LVSDownloader *downloader;
+	IBOutlet NSButton *debugCheckbox;
 	NSMutableArray *serverList;
 }
 

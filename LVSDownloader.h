@@ -18,6 +18,6 @@
 	NSMutableString *class_path;
 	NSMutableArray *cmd_args;
 }
--(void)pullFromServer:(NSString *)server_address language:(NSString *)language;
+-(void)pullFromServer:(NSString *)server_address language:(NSString *)language debug:(BOOL)debug;
 
 @end

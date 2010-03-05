@@ -58,7 +58,8 @@
 {
 	NSString *server_address = [[serverComboBox cell] stringValue];
 	NSString *language = [[languagePopUpButton cell] stringValue];
-	[downloader pullFromServer:server_address language:language];
+	NSInteger debugMode = [debugCheckbox state];
+	[downloader pullFromServer:server_address language:language debug:(debugMode == 1)];
 	[self addServer:server_address];
 	
 	[[NSApplication sharedApplication] terminate:nil];

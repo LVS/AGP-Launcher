@@ -168,7 +168,7 @@
 	return server;
 }
 
--(void)pullFromServer:(NSString *)server_address language:(NSString *)language
+-(void)pullFromServer:(NSString *)server_address language:(NSString *)language debug:(BOOL)debug
 {
 	[launchButton setEnabled:NO];
 	[launchButton setNeedsDisplay];
@@ -191,6 +191,11 @@
 	[self copyCocoaJarToDir:server];
 	// class_path = [NSString stringWithFormat:@"\"%@\"", class_path];
 	[cmd_args addObject:class_path];
+	
+	if (debug) {
+		NSString *param = [NSString stringWithFormat:@"-Ddebug=true"];
+		[cmd_args addObject:param];
+	}
 	
 	[cmd_args addObject:[self extractMainClass:jnlp]];
 	
