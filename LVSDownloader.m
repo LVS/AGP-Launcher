@@ -168,14 +168,20 @@
 	return server;
 }
 
--(void)pullFromServer:(NSString *)server_address language:(NSString *)language debug:(BOOL)debug
+-(void)pullFromServer:(NSString *)server_address language:(NSString *)language memory:(NSString *)memory debug:(BOOL)debug
 {
+	NSString *param;
+	
 	[launchButton setEnabled:NO];
 	[launchButton setNeedsDisplay];
 	
 	NSMutableString *server = [self fullServerAddress:server_address];
 	class_path = [[NSMutableString alloc] init];
-    cmd_args = [NSMutableArray arrayWithObjects:@"-XstartOnFirstThread", @"-Xmx1024m", nil];
+    cmd_args = [[NSMutableArray alloc] init];
+	[cmd_args addObject:@"-XstartOnFirstThread"];
+	
+	param = [NSString stringWithFormat:@"-Xmx%@m", memory];
+	[cmd_args addObject:param];
 	
 	NSMutableString *jnlp = [self downloadJNLPs:server];
 	[self extractPropertyFiles:jnlp language:language];
@@ -193,7 +199,7 @@
 	[cmd_args addObject:class_path];
 	
 	if (debug) {
-		NSString *param = [NSString stringWithFormat:@"-Ddebug=true"];
+		param = [NSString stringWithFormat:@"-Ddebug=true"];
 		[cmd_args addObject:param];
 	}
 	

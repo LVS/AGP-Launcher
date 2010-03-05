@@ -58,8 +58,9 @@
 {
 	NSString *server_address = [[serverComboBox cell] stringValue];
 	NSString *language = [[languagePopUpButton cell] stringValue];
+	NSString *memory = [[memoryPopUpButton cell] titleOfSelectedItem];
 	NSInteger debugMode = [debugCheckbox state];
-	[downloader pullFromServer:server_address language:language debug:(debugMode == 1)];
+	[downloader pullFromServer:server_address language:language memory:memory debug:(debugMode == 1)];
 	[self addServer:server_address];
 	
 	[[NSApplication sharedApplication] terminate:nil];

@@ -13,6 +13,7 @@
 @interface ApplicationController : NSObject {
 	IBOutlet NSComboBox *serverComboBox;
 	IBOutlet NSPopUpButton *languagePopUpButton;
+	IBOutlet NSPopUpButton *memoryPopUpButton;
 	IBOutlet LVSDownloader *downloader;
 	IBOutlet NSButton *debugCheckbox;
 	NSMutableArray *serverList;

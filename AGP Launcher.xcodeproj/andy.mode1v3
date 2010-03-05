@@ -274,7 +274,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>7</integer>
+									<integer>5</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -317,7 +317,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>LVSDownloader.m</string>
+								<string>ApplicationController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -325,11 +325,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>LVSDownloader.m</string>
+										<string>ApplicationController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>A1D0823011416701003211AB</string>
+										<string>A1D0828911416D99003211AB</string>
 										<key>history</key>
 										<array>
 											<string>A14B3F15112C7FBE002FE775</string>
@@ -338,10 +338,10 @@
 											<string>A127D3EC112ED9CB007EA9D3</string>
 											<string>A1D0820A114165CF003211AB</string>
 											<string>A1D0820C114165CF003211AB</string>
-											<string>A1D0820E114165CF003211AB</string>
-											<string>A1D08229114166E9003211AB</string>
-											<string>A1D0822A114166E9003211AB</string>
-											<string>A1D0822B114166E9003211AB</string>
+											<string>A1D0825D11416BA8003211AB</string>
+											<string>A1D0828211416D80003211AB</string>
+											<string>A1D0828311416D80003211AB</string>
+											<string>A1D0828411416D80003211AB</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -539,12 +539,15 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>A1D0828A11416D99003211AB</string>
+		<string>A1D0824F11416ABC003211AB</string>
+		<string>A1D0824A11416A8C003211AB</string>
 		<string>A1D0821D11416641003211AB</string>
 		<string>A1D0821E11416641003211AB</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>A149F40211256E6800B2A0FE</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/andy/Code/AGP Launcher/AGP Launcher.xcodeproj</string>
+		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
 	<string>0 94 1680 934 0 0 1680 1028 </string>
@@ -720,10 +723,10 @@
 									<key>Frame</key>
 									<string>{{444, 0}, {530, 347}}</string>
 									<key>RubberWindowFrame</key>
-									<string>58 187 974 692 0 0 1680 1028 </string>
+									<string>69 208 974 692 0 0 1680 1028 </string>
 								</dict>
 								<key>RubberWindowFrame</key>
-								<string>58 187 974 692 0 0 1680 1028 </string>
+								<string>69 208 974 692 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXDebugSessionModule</string>
@@ -757,7 +760,7 @@
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
 			<key>WindowString</key>
-			<string>58 187 974 692 0 0 1680 1028 </string>
+			<string>69 208 974 692 0 0 1680 1028 </string>
 			<key>WindowToolGUID</key>
 			<string>1CD10A99069EF8BA00B06720</string>
 			<key>WindowToolIsVisible</key>
@@ -1177,8 +1180,8 @@
 			<true/>
 			<key>TableOfContents</key>
 			<array>
-				<string>A127D40E112EDB18007EA9D3</string>
-				<string>A127D40F112EDB18007EA9D3</string>
+				<string>A1D0824F11416ABC003211AB</string>
+				<string>A1D0825011416ABC003211AB</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
 				<string>1CA1AED706398EBD00589147</string>
 			</array>
@@ -1187,7 +1190,7 @@
 			<key>WindowString</key>
 			<string>21 596 744 409 0 0 1680 1028 </string>
 			<key>WindowToolGUID</key>
-			<string>A127D40E112EDB18007EA9D3</string>
+			<string>A1D0824F11416ABC003211AB</string>
 			<key>WindowToolIsVisible</key>
 			<false/>
 		</dict>
