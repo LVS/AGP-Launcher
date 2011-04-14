@@ -136,11 +136,11 @@
 
 -(void)copyCocoaJarToDir:(NSString *)server
 {
-	NSString *fullPath = [[self cacheFolder:server] stringByAppendingPathComponent:@"swt_cocoa64_x86-3.6M3.jar"];
+	NSString *fullPath = [[self cacheFolder:server] stringByAppendingPathComponent:@"swt_cocoa64_x86-3.6.2.jar"];
     BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:fullPath];
 	
 	if (!fileExists) {
-		NSString *jarPath = [[NSBundle mainBundle] pathForResource:@"swt_cocoa64_x86-3.6M3" 
+		NSString *jarPath = [[NSBundle mainBundle] pathForResource:@"swt_cocoa64_x86-3.6.2" 
 													   ofType:@"jar"];
 		NSLog(@"Copying Jar from %@ to %@", jarPath, fullPath);
 		[[NSFileManager defaultManager] copyItemAtPath:jarPath toPath:fullPath error:NULL];
