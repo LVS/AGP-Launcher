@@ -12,12 +12,13 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		A1229438135846FD00A48C36 /* swt_cocoa64_x86-3.6.2.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = A1229437135846FD00A48C36 /* swt_cocoa64_x86-3.6.2.jar */; };
+		A1229443135847C100A48C36 /* swt_cocoa64_x86-3.6.2.jar in Resources */ = {isa = PBXBuildFile; fileRef = A1229437135846FD00A48C36 /* swt_cocoa64_x86-3.6.2.jar */; };
 		A149F41211256E8700B2A0FE /* agp-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A149F41111256E8700B2A0FE /* agp-logo.png */; };
 		A14B3F1B112C809F002FE775 /* AGPLauncher.icns in Resources */ = {isa = PBXBuildFile; fileRef = A14B3F1A112C809F002FE775 /* AGPLauncher.icns */; };
 		A14B3F35112C8558002FE775 /* RegexKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A14B3F34112C8558002FE775 /* RegexKit.framework */; };
 		A14B3F44112C85BC002FE775 /* LVSDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = A14B3F43112C85BC002FE775 /* LVSDownloader.m */; };
 		A14B3F5E112C87C8002FE775 /* RegexKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A14B3F34112C8558002FE775 /* RegexKit.framework */; };
-		A1BB5B0F112D33D800EAF703 /* swt_cocoa64_x86-3.6M3.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = A14B4095112CC02D002FE775 /* swt_cocoa64_x86-3.6M3.jar */; };
 		A1C8D62B1125871300D4FA6F /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C8D62A1125871300D4FA6F /* ApplicationController.m */; };
 /* End PBXBuildFile section */
 
@@ -38,7 +39,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
-				A1BB5B0F112D33D800EAF703 /* swt_cocoa64_x86-3.6M3.jar in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,13 +56,13 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* AGP_Launcher-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AGP_Launcher-Info.plist"; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* AGP Launcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AGP Launcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1107320486CEB800E47090 /* ABP Launcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ABP Launcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1229437135846FD00A48C36 /* swt_cocoa64_x86-3.6.2.jar */ = {isa = PBXFileReference; explicitFileType = archive.jar; path = "swt_cocoa64_x86-3.6.2.jar"; sourceTree = "<group>"; };
 		A149F41111256E8700B2A0FE /* agp-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "agp-logo.png"; sourceTree = "<group>"; };
 		A14B3F1A112C809F002FE775 /* AGPLauncher.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AGPLauncher.icns; sourceTree = "<group>"; };
 		A14B3F34112C8558002FE775 /* RegexKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RegexKit.framework; path = Local/Frameworks/RegexKit.framework; sourceTree = DEVELOPER_DIR; };
 		A14B3F42112C85BC002FE775 /* LVSDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LVSDownloader.h; sourceTree = "<group>"; };
 		A14B3F43112C85BC002FE775 /* LVSDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LVSDownloader.m; sourceTree = "<group>"; };
-		A14B4095112CC02D002FE775 /* swt_cocoa64_x86-3.6M3.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = "swt_cocoa64_x86-3.6M3.jar"; sourceTree = "<group>"; };
 		A1C8D6291125871300D4FA6F /* ApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationController.h; sourceTree = "<group>"; };
 		A1C8D62A1125871300D4FA6F /* ApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,6 +74,7 @@
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				A14B3F35112C8558002FE775 /* RegexKit.framework in Frameworks */,
+				A1229438135846FD00A48C36 /* swt_cocoa64_x86-3.6.2.jar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,7 +116,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107320486CEB800E47090 /* AGP Launcher.app */,
+				8D1107320486CEB800E47090 /* ABP Launcher.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -144,7 +145,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A14B4095112CC02D002FE775 /* swt_cocoa64_x86-3.6M3.jar */,
+				A1229437135846FD00A48C36 /* swt_cocoa64_x86-3.6.2.jar */,
 				A14B3F1A112C809F002FE775 /* AGPLauncher.icns */,
 				A149F41111256E8700B2A0FE /* agp-logo.png */,
 				8D1107310486CEB800E47090 /* AGP_Launcher-Info.plist */,
@@ -166,9 +167,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8D1107260486CEB800E47090 /* AGP Launcher */ = {
+		8D1107260486CEB800E47090 /* ABP Launcher */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "AGP Launcher" */;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "ABP Launcher" */;
 			buildPhases = (
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
@@ -180,10 +181,10 @@
 			);
 			dependencies = (
 			);
-			name = "AGP Launcher";
+			name = "ABP Launcher";
 			productInstallPath = "$(HOME)/Applications";
 			productName = "AGP Launcher";
-			productReference = 8D1107320486CEB800E47090 /* AGP Launcher.app */;
+			productReference = 8D1107320486CEB800E47090 /* ABP Launcher.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -191,14 +192,14 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "AGP Launcher" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ABP Launcher" */;
 			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* AGP Launcher */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D1107260486CEB800E47090 /* AGP Launcher */,
+				8D1107260486CEB800E47090 /* ABP Launcher */,
 			);
 		};
 /* End PBXProject section */
@@ -208,6 +209,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1229443135847C100A48C36 /* swt_cocoa64_x86-3.6.2.jar in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				A149F41211256E8700B2A0FE /* agp-logo.png in Resources */,
@@ -268,7 +270,7 @@
 				GCC_PREFIX_HEADER = AGP_Launcher_Prefix.pch;
 				INFOPLIST_FILE = "AGP_Launcher-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = "AGP Launcher";
+				PRODUCT_NAME = "ABP Launcher";
 			};
 			name = Debug;
 		};
@@ -286,7 +288,7 @@
 				GCC_PREFIX_HEADER = AGP_Launcher_Prefix.pch;
 				INFOPLIST_FILE = "AGP_Launcher-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = "AGP Launcher";
+				PRODUCT_NAME = "ABP Launcher";
 			};
 			name = Release;
 		};
@@ -320,7 +322,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "AGP Launcher" */ = {
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "ABP Launcher" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4B08A954540054247B /* Debug */,
@@ -329,7 +331,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "AGP Launcher" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ABP Launcher" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,

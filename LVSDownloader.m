@@ -211,7 +211,7 @@
 	LSApplicationParameters params = {0, NSWorkspaceLaunchAsync || kLSLaunchDefaults, &ref, NULL, NULL, (CFArrayRef)cmd_args, NULL};
 	LSOpenApplication(&params, NULL);
 	
-//	NSLog(@"%@ %@", ref, cmd_args);
+	NSLog(@"%@ %@", ref, cmd_args);
 	
 	sleep(5);
 }
