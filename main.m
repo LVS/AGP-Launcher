@@ -1,6 +1,6 @@
 //
 //  main.m
-//  AGP Launcher
+//  ABP Launcher
 //
 //  Created by Andy on 12/02/2010.
 //  Copyright 2010 NextGen Development Ltd. All rights reserved.

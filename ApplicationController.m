@@ -1,6 +1,6 @@
 //
 //  ApplicationController.m
-//  AGP Launcher
+//  ABP Launcher
 //
 //  Created by Andy on 12/02/2010.
 //  Copyright 2010 NextGen Development Ltd. All rights reserved.
@@ -15,7 +15,7 @@
 {
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
 	NSString *path = [paths objectAtIndex:0];
-	path = [path stringByAppendingPathComponent:@"AGP Launcher"];
+	path = [path stringByAppendingPathComponent:@"ABP Launcher"];
 	
 	[[NSFileManager defaultManager] createDirectoryAtPath:path
 							  withIntermediateDirectories:YES 
@@ -64,6 +64,16 @@
 	[self addServer:server_address];
 	
 	[[NSApplication sharedApplication] terminate:nil];
+}
+
+- (IBAction)clickClearCache:(id)sender {
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+	NSString *path = [paths objectAtIndex:0];
+	path = [path stringByAppendingPathComponent:@"ABP Launcher"];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    [fileManager removeItemAtPath:path error:NULL];
+    [sender setEnabled:NO];
 }
 
 -(void) awakeFromNib 

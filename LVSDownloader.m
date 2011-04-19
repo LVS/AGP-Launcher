@@ -1,6 +1,6 @@
 //
 //  LVSDownloader.m
-//  AGP Launcher
+//  ABP Launcher
 //
 //  Created by Andy Jeffries (andy@andyjeffries.co.uk) on 17/02/2010.
 //  Copyright 2010 LVS Ltd. All rights reserved.
@@ -16,7 +16,7 @@
 	NSLog(@"Downloading '%@'", url);
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: 
 									[NSURL URLWithString:url]];
-	[request setValue:@"AGP-Launcher (Mac)" forHTTPHeaderField:@"User-Agent"];
+	[request setValue:@"ABP-Launcher (Mac)" forHTTPHeaderField:@"User-Agent"];
 	NSData *data = [ NSURLConnection sendSynchronousRequest:request returningResponse: nil error: nil ];
 	NSString *content = [[NSString alloc] initWithBytes: [data bytes] length:[data length] encoding: NSUTF8StringEncoding];
 	return content;
@@ -31,9 +31,10 @@
 		NSLog(@"Downloading '%@'", url);
 		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: 
 										[NSURL URLWithString:url]];
-		[request setValue:@"AGP-Launcher (Mac)" forHTTPHeaderField:@"User-Agent"];
+		[request setValue:@"ABP-Launcher (Mac)" forHTTPHeaderField:@"User-Agent"];
 		NSData *data = [ NSURLConnection sendSynchronousRequest:request returningResponse: nil error: nil ];
 		NSLog(@"Writing to %@", file_name);
+        
 		BOOL written = [data writeToFile:file_name 
 				  atomically:NO];
 		NSLog(@"Written? %@", (written ? @"YES" : @"NO"));		
@@ -42,15 +43,12 @@
 
 -(NSString *)cacheFolder:(NSString *)server
 {
-	NSMutableString *server_path = [[NSMutableString alloc] init];
-	[server_path setString:server];
-	[server_path match:@"[^a-z0-9.]" 
-			   replace:RKReplaceAll 
-			withString:@"_"];
+    NSString *server_path = [server stringByReplacingOccurrencesOfRegex:@"[^a-z0-9.]"
+                                                             withString:@"_"];
 	
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
 	NSString *path = [paths objectAtIndex:0];
-	path = [path stringByAppendingPathComponent:@"AGP Launcher"];
+	path = [path stringByAppendingPathComponent:@"ABP Launcher"];
 	path = [path stringByAppendingPathComponent:server_path];
 	
 	NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -76,18 +74,17 @@
 -(void)extractPropertyFiles:(NSString *)jnlp language:(NSString *)language
 {
 	NSString *regex   = @"<property name=\"(.*?)\" value=\"(.*?)\"";
-	NSRange range;
 	NSString *name;
 	NSString *value;
 	NSString *param;
 	
-	RKEnumerator *matchEnumerator = [jnlp matchEnumeratorWithRegex:regex];
-	
-	while([matchEnumerator nextRanges] != NULL) {
-		range = [matchEnumerator currentRangeForCapture:1];
-		name = [jnlp substringWithRange:range];
-		range = [matchEnumerator currentRangeForCapture:2];
-		value = [jnlp substringWithRange:range];
+    NSArray *matches = [jnlp arrayOfCaptureComponentsMatchedByRegex:regex];
+	NSEnumerator *enumerator = [matches objectEnumerator];
+    
+    NSArray * object;
+    while ((object = [enumerator nextObject])) {
+		name = [object objectAtIndex:1];
+		value = [object objectAtIndex:2];
 		param = [NSString stringWithFormat:@"-D%@=%@", name, value];
 		[cmd_args addObject:param];
 	}
@@ -105,13 +102,12 @@
 {
 	NSMutableArray *jar_files = [[NSMutableArray alloc] init];
 	NSString *regex   = @"<jar href=\"(.*?)\"";
-	NSRange range;
-	
-	RKEnumerator *matchEnumerator = [jnlp matchEnumeratorWithRegex:regex];
-	
-	while([matchEnumerator nextRanges] != NULL) {
-		range = [matchEnumerator currentRangeForCapture:1];
-		NSString *file_name = [jnlp substringWithRange:range];
+	NSArray *matches = [jnlp arrayOfCaptureComponentsMatchedByRegex:regex];
+	NSEnumerator *enumerator = [matches objectEnumerator];
+
+    NSArray * object;
+    while ((object = [enumerator nextObject])) {
+		NSString *file_name = [object objectAtIndex:1];
 		if (![file_name isMatchedByRegex:@"swt"]) {
 			[jar_files addObject:file_name];
 		}
@@ -131,6 +127,7 @@
 						to:target];
 		[class_path appendString:[NSString stringWithFormat:@"%@:", target]];
 		[progressBar incrementBy:1];
+        [progressBar displayIfNeeded];
 	}
 }
 
@@ -150,8 +147,7 @@
 
 -(NSString *)extractMainClass:(NSString *)jnlp
 {
-	NSString *mainClass = NULL;
-	[jnlp getCapturesWithRegexAndReferences:@"<application-desc main-class=\"(.*?)\"", @"$1", &mainClass, nil];
+    NSString *mainClass = [jnlp stringByMatching:@"<application-desc main-class=\"(.*?)\"" capture:1];
 	return mainClass;
 }
 
@@ -160,7 +156,7 @@
 	NSMutableString *server = [[NSMutableString alloc] initWithString:server_address];
 	if (![server isMatchedByRegex:@"^http"]) {
 		[server insertString:@"http://" atIndex:0];
-		[server appendString:@":8080/agp/"];
+		[server appendString:@":8080/abp/"];
 	}
 	if (![server isMatchedByRegex:@"/$"]) {
 		[server appendString:@"/"];
@@ -209,9 +205,9 @@
 	FSRef ref;
 	status = FSPathMakeRef((const UInt8 *)[@"/usr/bin/java" fileSystemRepresentation], &ref, NULL);
 	LSApplicationParameters params = {0, NSWorkspaceLaunchAsync || kLSLaunchDefaults, &ref, NULL, NULL, (CFArrayRef)cmd_args, NULL};
-	LSOpenApplication(&params, NULL);
+	status = LSOpenApplication(&params, NULL);
 	
-	NSLog(@"%@ %@", ref, cmd_args);
+	NSLog(@"%@", cmd_args);
 	
 	sleep(5);
 }

@@ -1,14 +1,14 @@
 //
-//  AGP_LauncherAppDelegate.m
-//  AGP Launcher
+//  ABP_LauncherAppDelegate.m
+//  ABP Launcher
 //
 //  Created by Andy on 12/02/2010.
 //  Copyright 2010 NextGen Development Ltd. All rights reserved.
 //
 
-#import "AGP_LauncherAppDelegate.h"
+#import "ABP_LauncherAppDelegate.h"
 
-@implementation AGP_LauncherAppDelegate
+@implementation ABP_LauncherAppDelegate
 
 @synthesize window;
 
