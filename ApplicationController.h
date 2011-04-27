@@ -16,6 +16,10 @@
 	IBOutlet LVSDownloader *downloader;
 	IBOutlet NSButton *debugCheckbox;
 	NSMutableArray *serverList;
+    IBOutlet NSTextField *progressLabel;
+    IBOutlet NSTextField *formLabel;
+    IBOutlet NSProgressIndicator *progressBar;
+    IBOutlet NSTextField *actionLabel;
 }
 
 -(IBAction)clickLaunch:(id)sender;

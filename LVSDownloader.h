@@ -12,6 +12,7 @@
 @interface LVSDownloader : NSObject {
 	IBOutlet NSButton *launchButton;
 	IBOutlet NSProgressIndicator *progressBar;
+    IBOutlet NSTextField *actionLabel;
 	
 	@private
 	NSMutableString *class_path;

@@ -123,11 +123,15 @@
 		NSString *file_name = [files objectAtIndex:i];
 		NSString *baseName = [file_name lastPathComponent];
 		NSString *target = [cacheFolder stringByAppendingPathComponent:baseName];
+//        [actionLabel setStringValue:[NSString stringWithFormat:@"Downloading %@", baseName]];
+        [actionLabel setStringValue:baseName];
+        [actionLabel displayIfNeeded];
 		[self downloadFile:[NSString stringWithFormat:@"%@%@", server, file_name] 
 						to:target];
 		[class_path appendString:[NSString stringWithFormat:@"%@:", target]];
 		[progressBar incrementBy:1];
         [progressBar displayIfNeeded];
+//        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1]];
 	}
 }
 
@@ -200,7 +204,10 @@
 	}
 	
 	[cmd_args addObject:[self extractMainClass:jnlp]];
-	
+
+    [actionLabel setStringValue:@"Launching ABP, please wait..."];
+    [actionLabel displayIfNeeded];
+    
 	OSStatus status = noErr;
 	FSRef ref;
 	status = FSPathMakeRef((const UInt8 *)[@"/usr/bin/java" fileSystemRepresentation], &ref, NULL);

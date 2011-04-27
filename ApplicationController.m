@@ -56,10 +56,26 @@
 
 -(IBAction)clickLaunch:(id)sender
 {
+    [sender setHidden:YES];
+    [progressLabel setHidden:NO];
+    [formLabel setHidden:YES];
+    [progressBar setHidden:NO];
+    [actionLabel setHidden:NO];
+    [actionLabel setStringValue:@"Downloading ABP..."];
+    
+    NSWindow *window = [sender window];
+    NSRect frame = [window frame];
+    frame.origin.y += frame.size.height - 150;
+    frame.size.height = 150;
+    [window setFrame:frame display:NO animate:YES];
+    
+    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1]];
+    
 	NSString *server_address = [[serverComboBox cell] stringValue];
 	NSString *language = [[languagePopUpButton cell] stringValue];
 	NSString *memory = [[memoryPopUpButton cell] titleOfSelectedItem];
 	NSInteger debugMode = [debugCheckbox state];
+    
 	[downloader pullFromServer:server_address language:language memory:memory debug:(debugMode == 1)];
 	[self addServer:server_address];
 	
@@ -74,6 +90,7 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     [fileManager removeItemAtPath:path error:NULL];
     [sender setEnabled:NO];
+    NSRunAlertPanel(@"ABP Launcher", @"Your cache has been successfully cleared.", @"OK", nil,nil);
 }
 
 -(void) awakeFromNib 
