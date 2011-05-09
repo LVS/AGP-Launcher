@@ -108,7 +108,7 @@
     NSArray * object;
     while ((object = [enumerator nextObject])) {
 		NSString *file_name = [object objectAtIndex:1];
-		if (![file_name isMatchedByRegex:@"swt"]) {
+		if (![file_name isMatchedByRegex:@"win32"]) {
 			[jar_files addObject:file_name];
 		}
 	}
@@ -147,6 +147,7 @@
 		[[NSFileManager defaultManager] copyItemAtPath:jarPath toPath:fullPath error:NULL];
 	}
 	[class_path appendString:fullPath];
+//    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1]];
 }
 
 -(NSString *)extractMainClass:(NSString *)jnlp

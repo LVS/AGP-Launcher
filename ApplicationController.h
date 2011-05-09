@@ -10,6 +10,7 @@
 #import "LVSDownloader.h"
 
 @interface ApplicationController : NSObject {
+    IBOutlet NSWindow *window;
 	IBOutlet NSComboBox *serverComboBox;
 	IBOutlet NSPopUpButton *languagePopUpButton;
 	IBOutlet NSPopUpButton *memoryPopUpButton;
@@ -20,9 +21,11 @@
     IBOutlet NSTextField *formLabel;
     IBOutlet NSProgressIndicator *progressBar;
     IBOutlet NSTextField *actionLabel;
+    IBOutlet NSButton *clearCacheButton;
+    IBOutlet NSMenuItem *clearCacheMenuItem;
 }
 
 -(IBAction)clickLaunch:(id)sender;
-- (IBAction)clickClearCache:(id)sender;
+-(IBAction)clickClearCache:(id)sender;
 
 @end

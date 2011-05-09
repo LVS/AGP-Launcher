@@ -63,7 +63,6 @@
     [actionLabel setHidden:NO];
     [actionLabel setStringValue:@"Downloading ABP..."];
     
-    NSWindow *window = [sender window];
     NSRect frame = [window frame];
     frame.origin.y += frame.size.height - 150;
     frame.size.height = 150;
@@ -89,8 +88,17 @@
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     [fileManager removeItemAtPath:path error:NULL];
-    [sender setEnabled:NO];
-    NSRunAlertPanel(@"ABP Launcher", @"Your cache has been successfully cleared.", @"OK", nil,nil);
+    [clearCacheButton setEnabled:NO];
+    [clearCacheMenuItem setEnabled:NO];
+    NSAlert *alert = [NSAlert alertWithMessageText: @"ABP Launcher"
+                    defaultButton: @"OK"
+                    alternateButton: nil
+                    otherButton: nil
+        informativeTextWithFormat: @"Your cache has been successfully cleared."];
+    [alert beginSheetModalForWindow: window
+                      modalDelegate: nil
+                     didEndSelector: nil
+                        contextInfo: nil];
 }
 
 -(void) awakeFromNib 
