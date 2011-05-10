@@ -61,6 +61,8 @@
     [formLabel setHidden:YES];
     [progressBar setHidden:NO];
     [actionLabel setHidden:NO];
+    [clearCacheButton setHidden:YES];
+    [launchButton setHidden:YES];
     [actionLabel setStringValue:@"Downloading ABP..."];
     
     NSRect frame = [window frame];
@@ -74,8 +76,10 @@
 	NSString *language = [[languagePopUpButton cell] stringValue];
 	NSString *memory = [[memoryPopUpButton cell] titleOfSelectedItem];
 	NSInteger debugMode = [debugCheckbox state];
+	NSString *className = [classNameToRun stringValue];
+	NSInteger jnlp_tag = [applicationChoice selectedTag];
     
-	[downloader pullFromServer:server_address language:language memory:memory debug:(debugMode == 1)];
+	[downloader pullFromServer:server_address language:language memory:memory debug:(debugMode == 1) jnlpTag:jnlp_tag className:className];
 	[self addServer:server_address];
 	
 	[[NSApplication sharedApplication] terminate:nil];
@@ -101,6 +105,32 @@
                         contextInfo: nil];
 }
 
+- (IBAction)clickAdvancedDisclosure:(id)sender {
+    NSRect frame = [window frame];
+    CGFloat sizeChange = [advancedOptionsBox frame].size.height;
+    switch ([sender state]) {
+        case NSOnState:
+            // Show the extra box.
+            [advancedOptionsBox setHidden:NO];
+            // Make the window bigger.
+            frame.size.height += sizeChange;
+            // Move the origin.
+            frame.origin.y -= sizeChange;
+            break;
+        case NSOffState:
+            // Hide the extra box.
+            [advancedOptionsBox setHidden:YES];
+            // Make the window smaller.
+            frame.size.height -= sizeChange;
+            // Move the origin.
+            frame.origin.y += sizeChange;
+            break;
+        default:
+            break;
+    }
+    [window setFrame:frame display:YES animate:YES];
+}
+
 -(void) awakeFromNib 
 {
 	NSString *path = [self serverListFilename];
@@ -114,6 +144,12 @@
 			[serverComboBox selectItemAtIndex:0]; 
 		}
 	}
+    [advancedOptionsBox setHidden:YES];
+    NSRect frame = [window frame];
+    CGFloat sizeChange = [advancedOptionsBox frame].size.height;
+    frame.size.height -= sizeChange;
+    frame.origin.y += sizeChange;
+    [window setFrame:frame display:YES animate:YES];
 }
 
 @end

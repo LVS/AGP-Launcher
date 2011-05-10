@@ -14,8 +14,8 @@
 -(NSString *)downloadFileAndReturnContent:(NSString *)url
 {
 	NSLog(@"Downloading '%@'", url);
-	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: 
-									[NSURL URLWithString:url]];
+	NSMutableURLRequest *request = [NSMutableURLRequest 
+                                    requestWithURL:[NSURL URLWithString:url]];
 	[request setValue:@"ABP-Launcher (Mac)" forHTTPHeaderField:@"User-Agent"];
 	NSData *data = [ NSURLConnection sendSynchronousRequest:request returningResponse: nil error: nil ];
 	NSString *content = [[NSString alloc] initWithBytes: [data bytes] length:[data length] encoding: NSUTF8StringEncoding];
@@ -59,10 +59,22 @@
 	return path;
 }
 
--(NSMutableString *)downloadJNLPs:(NSString *)server
+-(NSMutableString *)downloadJNLPs:(NSString *)server jnlpTag:(NSInteger)jnlp_tag
 {
-	NSString *trayItemJNLPURL = [NSString stringWithFormat:@"%@%@",
-								 server, @"apps/trayItem.jnlp"];
+    NSString *trayItemJNLPURL = nil;
+    if (jnlp_tag == 0) {
+        trayItemJNLPURL = [NSString stringWithFormat:@"%@%@",
+                                     server, @"apps/trayItem.jnlp"];
+    } else if (jnlp_tag == 1) {
+        trayItemJNLPURL = [NSString stringWithFormat:@"%@%@",
+                           server, @"apps/tms_local.jnlp"];
+    } else if (jnlp_tag == 2) {
+        trayItemJNLPURL = [NSString stringWithFormat:@"%@%@",
+                           server, @"apps/retailMonitor.jnlp"];
+    } else if (jnlp_tag == 3) {
+        trayItemJNLPURL = [NSString stringWithFormat:@"%@%@",
+                           server, @"apps/trniviewer.jnlp"];
+    }
 	NSString *thirdPartyJNLPURL = [NSString stringWithFormat:@"%@%@",
 								 server, @"apps/thirdParty.jnlp"];
 	NSMutableString *jnlp = [[NSMutableString alloc] init];
@@ -108,7 +120,7 @@
     NSArray * object;
     while ((object = [enumerator nextObject])) {
 		NSString *file_name = [object objectAtIndex:1];
-		if (![file_name isMatchedByRegex:@"win32"]) {
+		if (![file_name isMatchedByRegex:@"(win32|swt_cocoa64_x86)"]) {
 			[jar_files addObject:file_name];
 		}
 	}
@@ -169,7 +181,7 @@
 	return server;
 }
 
--(void)pullFromServer:(NSString *)server_address language:(NSString *)language memory:(NSString *)memory debug:(BOOL)debug
+-(void)pullFromServer:(NSString *)server_address language:(NSString *)language memory:(NSString *)memory debug:(BOOL)debug jnlpTag:(NSInteger)jnlp_tag className:(NSString *)className
 {
 	NSString *param;
 	
@@ -184,7 +196,7 @@
 	param = [NSString stringWithFormat:@"-Xmx%@m", memory];
 	[cmd_args addObject:param];
 	
-	NSMutableString *jnlp = [self downloadJNLPs:server];
+	NSMutableString *jnlp = [self downloadJNLPs:server jnlpTag:jnlp_tag];
 	[self extractPropertyFiles:jnlp language:language];
 	
 	[cmd_args addObject:@"-classpath"];
@@ -204,7 +216,11 @@
 		[cmd_args addObject:param];
 	}
 	
-	[cmd_args addObject:[self extractMainClass:jnlp]];
+    if ([className length] != 0) {
+        [cmd_args addObject:className];        
+    } else {
+        [cmd_args addObject:[self extractMainClass:jnlp]];
+    }
 
     [actionLabel setStringValue:@"Launching ABP, please wait..."];
     [actionLabel displayIfNeeded];

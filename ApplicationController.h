@@ -23,9 +23,16 @@
     IBOutlet NSTextField *actionLabel;
     IBOutlet NSButton *clearCacheButton;
     IBOutlet NSMenuItem *clearCacheMenuItem;
+    IBOutlet NSButtonCell *advancedOptionsDisclosure;
+    IBOutlet NSBox *advancedOptionsBox;
+    IBOutlet NSTextField *classNameToRun;
+    IBOutlet NSBox *launchButton;
+    IBOutlet NSPopUpButton *applicationChoice;
+    
 }
 
 -(IBAction)clickLaunch:(id)sender;
 -(IBAction)clickClearCache:(id)sender;
+-(IBAction)clickAdvancedDisclosure:(id)sender;
 
 @end
