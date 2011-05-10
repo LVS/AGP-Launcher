@@ -2,3 +2,5 @@ build
 .DS_Store
 release_notes.txt
 release_notes_template.html.erb
+ABP Launcher.xcodeproj/project.xcworkspace/xcuserdata/*
+ABP Launcher.xcodeproj/xcuserdata/*
