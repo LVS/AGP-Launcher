@@ -33,7 +33,6 @@
 -(void)addServer:(NSString *)server
 {
 	NSString *obj = nil;
-	char *cs;
 
 	serverList = [NSMutableArray arrayWithContentsOfFile:[self serverListFilename]];
 	if (!serverList) {
@@ -41,10 +40,10 @@
 	}
 	unsigned count = [serverList count];
 	while (count--) {
-		cs = (char *)[serverList objectAtIndex:count];
-		NSString *s = [NSString stringWithCString:cs encoding:NSUTF8StringEncoding];
+		NSString *s = [serverList objectAtIndex:count];
 		if ([s caseInsensitiveCompare:server] == NSOrderedSame) {
 			obj = s;
+            break;
 		}
 	}
 	if (obj) {
@@ -78,8 +77,10 @@
 	NSInteger debugMode = [debugCheckbox state];
 	NSString *className = [classNameToRun stringValue];
 	NSInteger jnlp_tag = [applicationChoice selectedTag];
+    NSInteger widget_tag = [widgetChoice selectedTag];
     
-	[downloader pullFromServer:server_address language:language memory:memory debug:(debugMode == 1) jnlpTag:jnlp_tag className:className];
+	[downloader pullFromServer:server_address language:language memory:memory debug:(debugMode == 1) jnlpTag:jnlp_tag className:className
+                     widgetTag:widget_tag];
 	[self addServer:server_address];
 	
 	[[NSApplication sharedApplication] terminate:nil];
@@ -144,12 +145,16 @@
 			[serverComboBox selectItemAtIndex:0]; 
 		}
 	}
+    
     [advancedOptionsBox setHidden:YES];
     NSRect frame = [window frame];
     CGFloat sizeChange = [advancedOptionsBox frame].size.height;
     frame.size.height -= sizeChange;
     frame.origin.y += sizeChange;
     [window setFrame:frame display:YES animate:YES];
+    
+    [applicationChoice selectItemAtIndex:0];
+    [widgetChoice selectItemAtIndex:0];
 }
 
 @end

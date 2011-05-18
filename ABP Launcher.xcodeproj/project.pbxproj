@@ -17,6 +17,8 @@
 		A149F41211256E8700B2A0FE /* agp-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A149F41111256E8700B2A0FE /* agp-logo.png */; };
 		A14B3F1B112C809F002FE775 /* ABPLauncher.icns in Resources */ = {isa = PBXBuildFile; fileRef = A14B3F1A112C809F002FE775 /* ABPLauncher.icns */; };
 		A14B3F44112C85BC002FE775 /* LVSDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = A14B3F43112C85BC002FE775 /* LVSDownloader.m */; };
+		A168B1D31382B2D300038934 /* swt_carbon_x86-3.6.2.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = A168B1D21382B2D300038934 /* swt_carbon_x86-3.6.2.jar */; };
+		A168B1D41382BB1000038934 /* swt_carbon_x86-3.6.2.jar in Resources */ = {isa = PBXBuildFile; fileRef = A168B1D21382B2D300038934 /* swt_carbon_x86-3.6.2.jar */; };
 		A18A98B8135D9FD7003E694C /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = A18A98B7135D9FD7003E694C /* RegexKitLite.m */; };
 		A18A98BA135DB56F003E694C /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A18A98B9135DB56F003E694C /* libicucore.dylib */; };
 		A1C8D62B1125871300D4FA6F /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C8D62A1125871300D4FA6F /* ApplicationController.m */; };
@@ -61,6 +63,7 @@
 		A14B3F1A112C809F002FE775 /* ABPLauncher.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ABPLauncher.icns; sourceTree = "<group>"; };
 		A14B3F42112C85BC002FE775 /* LVSDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LVSDownloader.h; sourceTree = "<group>"; };
 		A14B3F43112C85BC002FE775 /* LVSDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LVSDownloader.m; sourceTree = "<group>"; };
+		A168B1D21382B2D300038934 /* swt_carbon_x86-3.6.2.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = "swt_carbon_x86-3.6.2.jar"; sourceTree = "<group>"; };
 		A18A98B6135D9FD7003E694C /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		A18A98B7135D9FD7003E694C /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		A18A98B9135DB56F003E694C /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = SDKs/MacOSX10.6.sdk/usr/lib/libicucore.dylib; sourceTree = DEVELOPER_DIR; };
@@ -76,6 +79,7 @@
 				A18A98BA135DB56F003E694C /* libicucore.dylib in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				A1229438135846FD00A48C36 /* swt_cocoa64_x86-3.6.2.jar in Frameworks */,
+				A168B1D31382B2D300038934 /* swt_carbon_x86-3.6.2.jar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +152,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A168B1D21382B2D300038934 /* swt_carbon_x86-3.6.2.jar */,
 				A1229437135846FD00A48C36 /* swt_cocoa64_x86-3.6.2.jar */,
 				A14B3F1A112C809F002FE775 /* ABPLauncher.icns */,
 				A149F41111256E8700B2A0FE /* agp-logo.png */,
@@ -179,6 +184,7 @@
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				A14B3F5C112C8794002FE775 /* CopyFiles */,
 				A1BB5B15112D33DC00EAF703 /* CopyFiles */,
+				A164F63A13796A4C00DF06A8 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -216,6 +222,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A168B1D41382BB1000038934 /* swt_carbon_x86-3.6.2.jar in Resources */,
 				A1229443135847C100A48C36 /* swt_cocoa64_x86-3.6.2.jar in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
@@ -225,6 +232,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A164F63A13796A4C00DF06A8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" ABP_Launcher-Info.plist)\nbuildNumber=$(echo $buildNumber | ruby -e \"ver = STDIN.read; new_build = ver[/[0-9]+$/].to_i + 1; puts ver.gsub(/\\d+$/, new_build.to_s)\")\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" ABP_Launcher-Info.plist";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D11072C0486CEB800E47090 /* Sources */ = {

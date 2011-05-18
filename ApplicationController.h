@@ -28,7 +28,7 @@
     IBOutlet NSTextField *classNameToRun;
     IBOutlet NSBox *launchButton;
     IBOutlet NSPopUpButton *applicationChoice;
-    
+    IBOutlet NSPopUpButton *widgetChoice;
 }
 
 -(IBAction)clickLaunch:(id)sender;

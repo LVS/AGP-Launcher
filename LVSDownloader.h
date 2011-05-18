@@ -17,7 +17,11 @@
 	@private
 	NSMutableString *class_path;
 	NSMutableArray *cmd_args;
+    NSString *coreFilename;
 }
--(void)pullFromServer:(NSString *)server_address language:(NSString *)language memory:(NSString *)memory debug:(BOOL)debug jnlpTag:(NSInteger)jnlp_tag className:(NSString *)className;
+-(void)pullFromServer:(NSString *)server_address language:(NSString *)language memory:(NSString *)memory debug:(BOOL)debug jnlpTag:(NSInteger)jnlp_tag className:(NSString *)className widgetTag:(NSInteger)widget_tag;
+
+@property(copy) NSString *coreFilename;
+
 
 @end

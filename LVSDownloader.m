@@ -11,6 +11,8 @@
 
 @implementation LVSDownloader
 
+@synthesize coreFilename;
+
 -(NSString *)downloadFileAndReturnContent:(NSString *)url
 {
 	NSLog(@"Downloading '%@'", url);
@@ -120,11 +122,57 @@
     NSArray * object;
     while ((object = [enumerator nextObject])) {
 		NSString *file_name = [object objectAtIndex:1];
-		if (![file_name isMatchedByRegex:@"(win32|swt_cocoa64_x86)"]) {
+		if (![file_name isMatchedByRegex:@"(win32|cocoa|carbon)"]) {
 			[jar_files addObject:file_name];
 		}
 	}
 	return jar_files;
+}
+
+-(NSString *)removeSignatureFromABPCore:(NSString *)server
+{
+    NSString *server_path = [server stringByReplacingOccurrencesOfRegex:@"[^a-z0-9.]"
+                                                             withString:@"_"];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+	NSString *cache_path = [paths objectAtIndex:0];
+	cache_path = [cache_path stringByAppendingPathComponent:@"ABP Launcher"];
+	cache_path = [cache_path stringByAppendingPathComponent:server_path];
+    
+    NSString *agp_core_jar = [self.coreFilename lastPathComponent];
+    NSString *agp_core_basename = [agp_core_jar stringByReplacingOccurrencesOfRegex:@".jar" withString:@""];
+    
+    NSFileManager *fm = [NSFileManager defaultManager];
+    BOOL fileExists = [fm fileExistsAtPath:[NSString stringWithFormat:@"%@/%@-unsigned.jar", cache_path, agp_core_basename]];
+    
+    if (!fileExists) {
+        [actionLabel setStringValue:@"Removing signature from AGP Core..."];
+        [actionLabel displayIfNeeded];
+        
+        NSString *cmd = [NSString stringWithFormat:@"cd \"%@\"; rm -rf tmp; mkdir -p tmp", cache_path];
+        NSLog(@"Clearing tmp path for extraction: %@", cmd);
+        system([cmd UTF8String]);
+        
+        cmd = [NSString stringWithFormat:@"cd \"%@\"; cd tmp; jar xvf ../%@ > /dev/null", cache_path, agp_core_jar];
+        NSLog(@"Extracting: %@", cmd);
+        system([cmd UTF8String]);
+        
+        cmd = [NSString stringWithFormat:@"cd \"%@\"; cd tmp; rm -rf META-INF/", cache_path];
+        NSLog(@"Unsigning: %@", cmd);
+        system([cmd UTF8String]);
+        
+        cmd = [NSString stringWithFormat:@"cd \"%@\"; cd tmp; jar cvf ../%@-unsigned.jar . > /dev/null", cache_path, agp_core_basename];
+        NSLog(@"Compressing: %@", cmd);
+        system([cmd UTF8String]);
+    }
+    
+    fileExists = [fm fileExistsAtPath:[NSString stringWithFormat:@"%@/%@-unsigned.jar", cache_path, agp_core_basename]];
+    if (!fileExists) {
+        NSLog(@"Creating %@-unsigned.jar failed", agp_core_basename);
+        return [NSString stringWithFormat:@"%@/%@", cache_path, agp_core_jar]; 
+    } else {
+        return [NSString stringWithFormat:@"%@/%@-unsigned.jar", cache_path, agp_core_basename]; 
+    }
 }
 
 -(void)downloadJarFiles:(NSArray *)files server:(NSString *)server
@@ -133,6 +181,9 @@
 	int arrayCount = [files count];
 	for (int i = 0; i < arrayCount; i++) {
 		NSString *file_name = [files objectAtIndex:i];
+        if ([file_name isMatchedByRegex:@"agp-core-"]) {
+            self.coreFilename = file_name;
+        }
 		NSString *baseName = [file_name lastPathComponent];
 		NSString *target = [cacheFolder stringByAppendingPathComponent:baseName];
 //        [actionLabel setStringValue:[NSString stringWithFormat:@"Downloading %@", baseName]];
@@ -140,6 +191,9 @@
         [actionLabel displayIfNeeded];
 		[self downloadFile:[NSString stringWithFormat:@"%@%@", server, file_name] 
 						to:target];
+        if ([file_name isMatchedByRegex:@"agp-core-"]) {
+            target = [self removeSignatureFromABPCore:server];
+        }
 		[class_path appendString:[NSString stringWithFormat:@"%@:", target]];
 		[progressBar incrementBy:1];
         [progressBar displayIfNeeded];
@@ -147,19 +201,31 @@
 	}
 }
 
--(void)copyCocoaJarToDir:(NSString *)server
+-(void)copyWidgetJarToDir:(NSString *)server widgetTag:(NSInteger)widget_tag
 {
-	NSString *fullPath = [[self cacheFolder:server] stringByAppendingPathComponent:@"swt_cocoa64_x86-3.6.2.jar"];
-    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:fullPath];
-	
-	if (!fileExists) {
-		NSString *jarPath = [[NSBundle mainBundle] pathForResource:@"swt_cocoa64_x86-3.6.2" 
-													   ofType:@"jar"];
-		NSLog(@"Copying Jar from %@ to %@", jarPath, fullPath);
-		[[NSFileManager defaultManager] copyItemAtPath:jarPath toPath:fullPath error:NULL];
-	}
-	[class_path appendString:fullPath];
-//    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1]];
+    if (widget_tag == 0) {
+        NSString *fullPath = [[self cacheFolder:server] stringByAppendingPathComponent:@"swt_cocoa64_x86-3.6.2.jar"];
+        BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:fullPath];
+        
+        if (!fileExists) {
+            NSString *jarPath = [[NSBundle mainBundle] pathForResource:@"swt_cocoa64_x86-3.6.2" 
+                                                           ofType:@"jar"];
+            NSLog(@"Copying Jar from %@ to %@", jarPath, fullPath);
+            [[NSFileManager defaultManager] copyItemAtPath:jarPath toPath:fullPath error:NULL];
+        }
+        [class_path appendString:fullPath];
+    } else if (widget_tag == 1) {
+        NSString *fullPath = [[self cacheFolder:server] stringByAppendingPathComponent:@"swt_carbon_x86-3.6.2.jar"];
+        BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:fullPath];
+        
+        if (!fileExists) {
+            NSString *jarPath = [[NSBundle mainBundle] pathForResource:@"swt_carbon_x86-3.6.2" 
+                                                                ofType:@"jar"];
+            NSLog(@"Copying Jar from %@ to %@", jarPath, fullPath);
+            [[NSFileManager defaultManager] copyItemAtPath:jarPath toPath:fullPath error:NULL];
+        }
+        [class_path appendString:fullPath];
+    }
 }
 
 -(NSString *)extractMainClass:(NSString *)jnlp
@@ -181,7 +247,7 @@
 	return server;
 }
 
--(void)pullFromServer:(NSString *)server_address language:(NSString *)language memory:(NSString *)memory debug:(BOOL)debug jnlpTag:(NSInteger)jnlp_tag className:(NSString *)className
+-(void)pullFromServer:(NSString *)server_address language:(NSString *)language memory:(NSString *)memory debug:(BOOL)debug jnlpTag:(NSInteger)jnlp_tag className:(NSString *)className widgetTag:(NSInteger)widget_tag
 {
 	NSString *param;
 	
@@ -195,6 +261,10 @@
 	
 	param = [NSString stringWithFormat:@"-Xmx%@m", memory];
 	[cmd_args addObject:param];
+    
+    if (widget_tag == 1) {
+        [cmd_args addObject:@"-d32"];
+    }
 	
 	NSMutableString *jnlp = [self downloadJNLPs:server jnlpTag:jnlp_tag];
 	[self extractPropertyFiles:jnlp language:language];
@@ -207,7 +277,7 @@
 	[launchButton setNeedsDisplay];
 	
 	[self downloadJarFiles:jar_files server:server];
-	[self copyCocoaJarToDir:server];
+	[self copyWidgetJarToDir:server widgetTag:widget_tag];
 	// class_path = [NSString stringWithFormat:@"\"%@\"", class_path];
 	[cmd_args addObject:class_path];
 	
