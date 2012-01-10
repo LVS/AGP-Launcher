@@ -102,10 +102,10 @@
 		param = [NSString stringWithFormat:@"-D%@=%@", name, value];
 		[cmd_args addObject:param];
 	}
-	if ([language caseInsensitiveCompare:@"1"] == NSOrderedSame) {
+	if ([language caseInsensitiveCompare:@"English"] == NSOrderedSame) {
 		value = @"en_GB";
 	}
-	else if ([language caseInsensitiveCompare:@"2"] == NSOrderedSame) {
+	else if ([language caseInsensitiveCompare:@"French"] == NSOrderedSame) {
 		value = @"fr_FR";
 	}
 	param = [NSString stringWithFormat:@"-D%@=%@", @"locale", value];

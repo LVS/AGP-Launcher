@@ -72,7 +72,7 @@
     [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1]];
     
 	NSString *server_address = [[serverComboBox cell] stringValue];
-	NSString *language = [[languagePopUpButton cell] stringValue];
+	NSString *language = [[languagePopUpButton selectedItem] title];
 	NSString *memory = [[memoryPopUpButton cell] titleOfSelectedItem];
 	NSInteger debugMode = [debugCheckbox state];
 	NSString *className = [classNameToRun stringValue];
