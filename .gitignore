@@ -4,3 +4,7 @@ release_notes.txt
 release_notes_template.html.erb
 ABP Launcher.xcodeproj/project.xcworkspace/xcuserdata/*
 ABP Launcher.xcodeproj/xcuserdata/*
+WIN32/Release
+WIN32/Debug
+WIN32/src/ABPLauncher/Release
+WIN32/src/ABPLauncher/Debug
