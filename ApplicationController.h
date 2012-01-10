@@ -21,10 +21,9 @@
     IBOutlet NSTextField *formLabel;
     IBOutlet NSProgressIndicator *progressBar;
     IBOutlet NSTextField *actionLabel;
-    IBOutlet NSButton *clearCacheButton;
-    IBOutlet NSMenuItem *clearCacheMenuItem;
     IBOutlet NSButtonCell *advancedOptionsDisclosure;
     IBOutlet NSBox *advancedOptionsBox;
+    IBOutlet NSMenuItem *clearCacheMenuItem;
     IBOutlet NSTextField *classNameToRun;
     IBOutlet NSBox *launchButton;
     IBOutlet NSPopUpButton *applicationChoice;

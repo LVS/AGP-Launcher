@@ -60,7 +60,6 @@
     [formLabel setHidden:YES];
     [progressBar setHidden:NO];
     [actionLabel setHidden:NO];
-    [clearCacheButton setHidden:YES];
     [launchButton setHidden:YES];
     [actionLabel setStringValue:@"Downloading ABP..."];
     
@@ -93,7 +92,6 @@
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     [fileManager removeItemAtPath:path error:NULL];
-    [clearCacheButton setEnabled:NO];
     [clearCacheMenuItem setEnabled:NO];
     NSAlert *alert = [NSAlert alertWithMessageText: @"ABP Launcher"
                     defaultButton: @"OK"

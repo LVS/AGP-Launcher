@@ -24,23 +24,68 @@
 	return content;
 }
 
--(void)downloadFile:(NSString *)url to:(NSString *)file_name
+-(void)downloadFile:(NSString *)urlString to:(NSString *)cachedPath
 {
+    NSURL *url = [NSURL URLWithString:urlString];  
+    
 	NSFileManager *fm = [NSFileManager defaultManager];
-    BOOL fileExists = [fm fileExistsAtPath:file_name];
-	
-	if (!fileExists) {
-		NSLog(@"Downloading '%@'", url);
+    BOOL downloadFromServer = NO;
+    NSString *lastModifiedString = nil;  
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];  
+    [request setHTTPMethod:@"HEAD"];  
+    NSHTTPURLResponse *response;  
+    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error: NULL];  
+    if ([response respondsToSelector:@selector(allHeaderFields)]) {  
+        lastModifiedString = [[response allHeaderFields] objectForKey:@"Last-Modified"];  
+    }
+    
+    NSDate *lastModifiedServer = nil;  
+    @try {  
+        NSDateFormatter *df = [[NSDateFormatter alloc] init];  
+        df.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss 'GMT'";  
+        df.locale = [[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"] autorelease];  
+        df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];  
+        lastModifiedServer = [df dateFromString:lastModifiedString];  
+        [df release];  
+    }  
+    @catch (NSException * e) {  
+        NSLog(@"Error parsing last modified date: %@ - %@", lastModifiedString, [e description]);  
+    }
+    
+    NSDate *lastModifiedLocal = nil;  
+    if ([fm fileExistsAtPath:cachedPath]) {  
+        NSError *error = nil;  
+        NSDictionary *fileAttributes = [fm attributesOfItemAtPath:cachedPath error:&error];  
+        if (error) {  
+            NSLog(@"Error reading file attributes for: %@ - %@", cachedPath, [error localizedDescription]);  
+        }  
+        lastModifiedLocal = [fileAttributes fileModificationDate];  
+    }  
+    
+    // Download file from server if we don't have a local file  
+    if (!lastModifiedLocal) {  
+        downloadFromServer = YES;
+        NSLog(@"Downloading '%@' because we don't have a local copy", urlString);
+    }  
+    // Download file from server if the server modified timestamp is later than the local modified timestamp  
+    if ([lastModifiedLocal laterDate:lastModifiedServer] == lastModifiedServer) {  
+        downloadFromServer = YES;  
+        NSLog(@"Downloading '%@' because a newer copy exists on the server", urlString);
+    }
+    
+    if (downloadFromServer) {
 		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: 
-										[NSURL URLWithString:url]];
+										[NSURL URLWithString:urlString]];
 		[request setValue:@"ABP-Launcher (Mac)" forHTTPHeaderField:@"User-Agent"];
 		NSData *data = [ NSURLConnection sendSynchronousRequest:request returningResponse: nil error: nil ];
-		NSLog(@"Writing to %@", file_name);
+		NSLog(@"Writing to %@", cachedPath);
         
-		BOOL written = [data writeToFile:file_name 
+		BOOL written = [data writeToFile:cachedPath 
 				  atomically:NO];
 		NSLog(@"Written? %@", (written ? @"YES" : @"NO"));		
-	}
+	} else {
+        NSLog(@"Skipping '%@' as our local copy is up to date", urlString);
+    }
 }
 
 -(NSString *)cacheFolder:(NSString *)server
