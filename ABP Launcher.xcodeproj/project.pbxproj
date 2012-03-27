@@ -20,7 +20,7 @@
 		A168B1D31382B2D300038934 /* swt_carbon_x86-3.6.2.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = A168B1D21382B2D300038934 /* swt_carbon_x86-3.6.2.jar */; };
 		A168B1D41382BB1000038934 /* swt_carbon_x86-3.6.2.jar in Resources */ = {isa = PBXBuildFile; fileRef = A168B1D21382B2D300038934 /* swt_carbon_x86-3.6.2.jar */; };
 		A18A98B8135D9FD7003E694C /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = A18A98B7135D9FD7003E694C /* RegexKitLite.m */; };
-		A18A98BA135DB56F003E694C /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A18A98B9135DB56F003E694C /* libicucore.dylib */; };
+		A1B650DB152200EB0053BC9B /* libicucore.A.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A1B650DA152200EB0053BC9B /* libicucore.A.dylib */; };
 		A1C8D62B1125871300D4FA6F /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C8D62A1125871300D4FA6F /* ApplicationController.m */; };
 /* End PBXBuildFile section */
 
@@ -66,7 +66,7 @@
 		A168B1D21382B2D300038934 /* swt_carbon_x86-3.6.2.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = "swt_carbon_x86-3.6.2.jar"; sourceTree = "<group>"; };
 		A18A98B6135D9FD7003E694C /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		A18A98B7135D9FD7003E694C /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
-		A18A98B9135DB56F003E694C /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = SDKs/MacOSX10.6.sdk/usr/lib/libicucore.dylib; sourceTree = DEVELOPER_DIR; };
+		A1B650DA152200EB0053BC9B /* libicucore.A.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libicucore.A.dylib; sourceTree = "<group>"; };
 		A1C8D6291125871300D4FA6F /* ApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationController.h; sourceTree = "<group>"; };
 		A1C8D62A1125871300D4FA6F /* ApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,10 +76,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A18A98BA135DB56F003E694C /* libicucore.dylib in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				A1229438135846FD00A48C36 /* swt_cocoa64_x86-3.6.2.jar in Frameworks */,
 				A168B1D31382B2D300038934 /* swt_carbon_x86-3.6.2.jar in Frameworks */,
+				A1B650DB152200EB0053BC9B /* libicucore.A.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +112,7 @@
 		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A1B650DA152200EB0053BC9B /* libicucore.A.dylib */,
 				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
 				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
 				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
@@ -130,7 +131,6 @@
 		29B97314FDCFA39411CA2CEA /* AGP Launcher */ = {
 			isa = PBXGroup;
 			children = (
-				A18A98B9135DB56F003E694C /* libicucore.dylib */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -302,6 +302,10 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "ABP_Launcher-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = "ABP Launcher";
 				SDKROOT = macosx;
@@ -323,6 +327,10 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "ABP_Launcher-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = "ABP Launcher";
 				SDKROOT = macosx;

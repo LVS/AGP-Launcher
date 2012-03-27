@@ -153,6 +153,15 @@
 	else if ([language caseInsensitiveCompare:@"French"] == NSOrderedSame) {
 		value = @"fr_FR";
 	}
+	else if ([language caseInsensitiveCompare:@"Hebrew"] == NSOrderedSame) {
+		value = @"he_IL";
+	}
+	else if ([language caseInsensitiveCompare:@"Portugese"] == NSOrderedSame) {
+		value = @"pt_PT";
+	}
+	else if ([language caseInsensitiveCompare:@"Russian"] == NSOrderedSame) {
+		value = @"ru_RU";
+	}
 	param = [NSString stringWithFormat:@"-D%@=%@", @"locale", value];
 	[cmd_args addObject:param];
 }
