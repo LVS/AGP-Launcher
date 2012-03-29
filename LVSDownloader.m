@@ -313,6 +313,9 @@
     cmd_args = [[NSMutableArray alloc] init];
 	[cmd_args addObject:@"-XstartOnFirstThread"];
 	
+//	[cmd_args addObject:@"-Dorg.eclipse.swt.internal.carbon.noFocusRing"];
+//	[cmd_args addObject:@"-Dorg.eclipse.swt.internal.carbon.smallFonts"];
+    
 	param = [NSString stringWithFormat:@"-Xmx%@m", memory];
 	[cmd_args addObject:param];
     
