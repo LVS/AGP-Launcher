@@ -43,10 +43,9 @@
     @try {  
         NSDateFormatter *df = [[NSDateFormatter alloc] init];  
         df.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss 'GMT'";  
-        df.locale = [[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"] autorelease];  
+        df.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
         df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];  
         lastModifiedServer = [df dateFromString:lastModifiedString];  
-        [df release];  
     }  
     @catch (NSException * e) {  
         NSLog(@"Error parsing last modified date: %@ - %@", lastModifiedString, [e description]);  
